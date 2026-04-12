@@ -1,4 +1,3 @@
-
 public class LinkedList2 {
 
    /**
@@ -17,8 +16,15 @@ public class LinkedList2 {
       Node reverse = null;     // reverse will be the reversed list.
       Node p = obj;       // going through the nodes of list.
       
-      //VOTRE CODE VIENT ICI
-      
+      while (p != null) {
+         Node newNode = new Node();
+         newNode.value = p.value;
+         newNode.next = reverse;
+         reverse = newNode;
+         p = p.next;
+      }
+      return reverse;
+
    } // end of reverse()
    
    
@@ -27,14 +33,29 @@ public class LinkedList2 {
     * They are printed on one line, separated by spaces 
     */
     static void display(Node first) {
-       //VOTRE CODE VIENT ICI
+       Node current = first;
+       while (current != null) {
+          System.out.print(current.value);
+          if (current.next != null) {
+             System.out.print(" ");
+          }
+          current = current.next;
+       }
    } // end of display()
    
    /**
     * Return the number of zeros that occur in a given linked list of int.
     */
  static int count( Node head ) {
-    //VOTRE CODE VIENT ICI
+    int count = 0;
+    Node current = head;
+    while (current != null) {
+       if (current.value == 0) {
+          count++;
+       }
+       current = current.next;
+    }
+    return count;
 }// end of count()
 
  /**
@@ -42,7 +63,10 @@ public class LinkedList2 {
     * Uses recursion 
     */
  static int countRecursive( Node head ) {
-      //VOTRE CODE VIENT ICI
+      if (head == null) {
+         return 0;
+      }
+      return (head.value == 0 ? 1 : 0) + countRecursive(head.next);
 } // end of countRecursive()
       
    public static void main(String[] args) {
